@@ -1,6 +1,6 @@
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import Monitor from '../MonitorJSX/Monitor';
-import { useVideoTexture, Effects, MeshReflectorMaterial, Text, BakeShadows } from '@react-three/drei';
+import { useVideoTexture, Effects, MeshReflectorMaterial, Text } from '@react-three/drei';
 import { GlitchPass } from 'three-stdlib';
 import { easing } from 'maath';
 
@@ -45,7 +45,7 @@ export default function MonitorComponent() {
 
     function Floor({x}: {x: number}){
         return(
-        <mesh receiveShadow rotation={[x, 0, 0]} position={[0, -.5, 0]}>
+        <mesh receiveShadow rotation={[x, 0, 0]} position={[0, -.639, 0]}>
           <planeGeometry args={[100, 100]} />
           <MeshReflectorMaterial blur={[300, 30]} resolution={2000} mixBlur={1} mixStrength={80} roughness={1} depthScale={1.2} minDepthThreshold={0.4} maxDepthThreshold={1.4} color="rgb(15, 18, 25)" metalness={0.8} mirror={0}/>
         </mesh>
@@ -56,7 +56,6 @@ export default function MonitorComponent() {
         <Canvas style={{ height: '100vh', backgroundColor: 'rgb(15, 18, 25)' }}>
             <Postpro />
             <CameraRig />
-            <BakeShadows />
             <Floor x={-Math.PI / 2}/>
             <Floor x={0} />
             <Text position={[0, .2, 3]}>404</Text>
